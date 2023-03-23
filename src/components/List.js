@@ -1,9 +1,11 @@
 import React from "react";
 import { AiFillDelete } from "react-icons/ai";
 const List = ({ ind, name, amount, status, id }) => {
+  const url = "http://localhost:4000/"
+//  const url = 'https://instamojo-test-server.onrender.com/'
   async function funDel() {
     const res = await fetch(
-      `https://instamojo-test-server.onrender.com/api/invoice/${id}`,
+      `${url}api/invoice/${id}`,
       {
         method: "DELETE",
         headers: {

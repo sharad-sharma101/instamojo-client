@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import List from "./List";
 import axios from "axios";
 const Home = () => {
-  // two state of data of invoice
+  const url = "http://localhost:4000/"
+//  const url = 'https://instamojo-test-server.onrender.com/'
+
+// two state of data of invoice
   const [data, setData] = useState([]);
   const [filterData, setFilterData] = useState([]);
 
@@ -10,7 +13,7 @@ const Home = () => {
   async function fetchData() {
     try {
       const response = await axios.get(
-        "https://instamojo-test-server.onrender.com/api/invoice/all"
+        `${url}api/invoice/all`
       );
       setData(response.data);
       setFilterData(response.data);
@@ -26,33 +29,20 @@ const Home = () => {
   // function to hundle if user pay invoice  
   async function hundleInvoice(ele) {
     if (!ele.status) {
-      const response = await fetch(
-        `https://instamojo-test-server.onrender.com/api/invoice/create`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name: ele.name,
-            gmail: ele.gmail,
-            amount: ele.amount,
-            status: true,
-          }),
+
+      const data = {
+        name: ele.name,
+        gmail: ele.gmail,
+        amount: ele.amount,
+        user_id: ele._id,
+        url: `http://localhost:4000/callback?user_id=${ele._id}`
         }
-      );
-      const res = await fetch(
-        `https://instamojo-test-server.onrender.com/api/invoice/${ele._id}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      window.location.replace(
-        "https://test.instamojo.com/@sharadsharma8058947"
-      );
+        axios.post(`${url}pay`, data).then(res => {
+          console.log(res.data);
+          window.location.replace(
+            `${res.data}`
+          );
+        }).catch( (err) => console.log(err))
     } else {
       alert("this invoice i already paid");
     }
