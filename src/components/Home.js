@@ -86,11 +86,11 @@ const Home = () => {
       {/* table of invoices */}
       <div className="flex flex-col mx-12 mt-5 drop-shadow-lg bg-white rounded-lg">
         <div className="flex py-2 px-4 justify-between bg-gray-200 ">
-          <h3 className="text-lg font-normal">S No.</h3>
-          <h3 className="text-lg font-normal">Name</h3>
-          <h3 className="text-lg font-normal">Amount</h3>
-          <h3 className="text-lg font-normal">Status</h3>
-          <h3 className="text-lg font-normal">Delete</h3>
+          <h3 className="text-lg flex-1 font-normal">S No.</h3>
+          <h3 className="text-lg flex-1 font-normal">Name</h3>
+          <h3 className="text-lg flex-1 font-normal">Amount</h3>
+          <h3 className="text-lg flex-1 font-normal">Status</h3>
+          <h3 className="text-lg flex-1 font-normal">Delete</h3>
         </div>
         <div className="h-96 overflow-y-auto">
           {filterData.map((ele, index) => (
