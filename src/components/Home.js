@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import List from "./List";
 import axios from "axios";
 const Home = () => {
-  const url = "http://localhost:4000/"
-//  const url = 'https://instamojo-test-server.onrender.com/'
+  const url = 'https://instamojo-test-server.onrender.com/'
 
 // two state of data of invoice
   const [data, setData] = useState([]);
@@ -13,7 +12,7 @@ const Home = () => {
   async function fetchData() {
     try {
       const response = await axios.get(
-        `${url}api/invoice/all`
+        'https://instamojo-test-server.onrender.com/api/invoice/all'
       );
       setData(response.data);
       setFilterData(response.data);
@@ -35,7 +34,7 @@ const Home = () => {
         gmail: ele.gmail,
         amount: ele.amount,
         user_id: ele._id,
-        url: `http://localhost:4000/callback?user_id=${ele._id}`
+        url: `https://instamojo-test-server.onrender.com/callback?user_id=${ele._id}`
         }
         axios.post(`${url}pay`, data).then(res => {
           console.log(res.data);
